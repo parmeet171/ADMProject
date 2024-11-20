@@ -1,169 +1,203 @@
-import React from 'react'
+import axios from "axios";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setEducationalBackgroundId } from "../../store/courseSlice";
+import toast from "react-hot-toast";
 
 const EducationalBack = () => {
+
+  const dispatch = useDispatch()
+  const [saved, setSaved] = useState(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const {
+      schoolname,
+      board,
+      marks,
+      year,
+      schoolname2,
+      board2,
+      marks2,
+      year2,
+    } = e.target;
+
+    try {
+      await axios
+        .post("http://localhost:4000/api/application/educationalbackground", {
+          tenthSchoolName: schoolname.value,
+          tenthBoard: board.value,
+          tenthMarks: marks.value,
+          tenthYear: year.value,
+          twelfthSchoolName: schoolname2.value,
+          twelfthBoard: board2.value,
+          twelfthMarks: marks2.value,
+          twelfthYear: year2.value,
+        })
+        .then((data) => {
+          dispatch(setEducationalBackgroundId(data.data))
+          setSaved(true);
+          toast.success("Saved");
+        });
+      } catch (error) {
+      toast.error(err.message);
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <div className="text-2xl text-left mb-2 text-[#1d3f88]">
         <h1>Educational Background</h1>
       </div>
-      <div className="bg-white grid grid-cols-4 gap-4 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        {/* firstname */}
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white grid grid-cols-4 gap-4 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
+        <div className="col-span-4 text-gray-600">Class 10th</div>
+        {/* School Name */}
         <div className="mb-2 col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="firstname"
+            htmlFor="schoolname"
           >
-            First Name
+            School Name
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
-            id="firstname"
+            id="schoolname"
             type="text"
-            placeholder="Enter your First Name..."
+            placeholder="Enter your School Name..."
             required
           />
         </div>
-        {/* lastname */}
-        <div className="mb-2  col-span-2">
+        {/* Board */}
+        <div className="mb-2 col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="lastname"
+            htmlFor="board"
           >
-            Last Name
+            Examination Board
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="lastname"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
+            id="board"
             type="text"
-            placeholder="Enter your Last Name..."
+            placeholder="Enter your Examination Board..."
             required
           />
         </div>
-        {/* phone Number */}
-        <div className="mb-2  col-span-2">
+        {/* Marks */}
+        <div className="mb-2 col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="phonenumber"
+            htmlFor="marks"
           >
-            Phone Number *
+            Marks (in Percentage)
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="phonenumber"
-            type="tel"
-            placeholder="Enter your Phone Number..."
-            required
-          />
-        </div>
-        {/* email */}
-        <div className="mb-2  col-span-2">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            for="email"
-          >
-            Email
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="email"
-            type="email"
-            placeholder="Enter your Email..."
-            required
-          />
-        </div>
-        {/* dob  */}
-        <div className="mb-2  col-span-2">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            for="dob"
-          >
-            Date of Birth
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="dob"
-            type="date"
-            placeholder="Enter your Date of Birth..."
-            required
-          />
-        </div>
-        {/* address */}
-        <div className="mb-2  col-span-2">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            for="addressl1"
-          >
-            Address line 1
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="addressl1"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
+            id="marks"
             type="text"
-            placeholder="Enter your Date of Address..."
+            placeholder="Enter your 10th Marks..."
             required
           />
         </div>
-        {/* address l2 */}
-        <div className="mb-2  col-span-2">
+        {/* year */}
+        <div className="mb-2 col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="addressl2"
+            htmlFor="year"
           >
-            Address line 2
+            Year
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="addressl2"
-            type="text"
-            placeholder="Enter your Date of Address..."
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
+            id="year"
+            type="number"
+            placeholder="Enter 10th passout year..."
             required
           />
         </div>
-        {/* state  */}
-        <div className="mb-2  col-span-1">
+
+        <div className="col-span-4 text-gray-600">Class 12th</div>
+        {/* School Name */}
+        <div className="mb-2 col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="state"
+            htmlFor="schoolname2"
           >
-            State
+            School Name
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="state"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
+            id="schoolname2"
             type="text"
-            placeholder="Enter your State..."
+            placeholder="Enter your School Name..."
             required
           />
         </div>
-        {/* country  */}
-        <div className="mb-2  col-span-1">
+        {/* Board */}
+        <div className="mb-2 col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="country"
+            htmlFor="board2"
           >
-            Country
+            Examination Board
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="country"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
+            id="board2"
             type="text"
-            placeholder="Enter your Country..."
+            placeholder="Enter your Examination Board..."
+            required
+          />
+        </div>
+        {/* Marks */}
+        <div className="mb-2 col-span-2">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="marks2"
+          >
+            Marks (in Percentage)
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
+            id="marks2"
+            type="text"
+            placeholder="Enter your 12th Marks..."
+            required
+          />
+        </div>
+        {/* year */}
+        <div className="mb-2 col-span-2">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="year2"
+          >
+            Year
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
+            id="year2"
+            type="number"
+            placeholder="Enter 12th passout year..."
             required
           />
         </div>
 
         {/* submit button  */}
-        {/* <div className="flex justify-end col-span-4">
+        <div className="flex justify-end col-span-4">
           <button
-            className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
+            className={` text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${saved ? "cursor-not-allowed bg-blue-300 " : "cursor-pointer bg-blue-500 hover:bg-blue-700"}`}
+            type="submit"
+            disabled={saved}
           >
-            Submit Application
+            {saved ? "Saved" : "Save"}
           </button>
-        </div> */}
-      </div>
+        </div>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default EducationalBack
+export default EducationalBack;

@@ -15,7 +15,7 @@ const SideBar = () => {
         <Link
           to="/student"
           className={`flex items-center gap-4 p-4 hover:bg-[#ffffff28] ${
-            location.pathname === "/student" ? "font-bold " : ""
+            location.pathname === "/student" ? "font-bold bg-[#ffffff28]" : ""
           }`}
         >
           <FaHome  className='text-2xl' />
@@ -24,7 +24,7 @@ const SideBar = () => {
         <Link
           to="/student/application"
           className={`flex items-center gap-4 p-4 hover:bg-[#ffffff28] ${
-            location.pathname === "/student/application" ? "font-bold " : ""
+            location.pathname === "/student/application" ? "font-bold bg-[#ffffff28]" : ""
           }`}
         >
           <GrDocumentText className='text-2xl' />
@@ -33,7 +33,7 @@ const SideBar = () => {
         <Link
           to="/student/application-status"
           className={`flex items-center gap-4 p-4 hover:bg-[#ffffff28] ${
-            location.pathname === "/student/application-status" ? "font-bold" : ""
+            location.pathname === "/student/application-status" ? "font-bold bg-[#ffffff28]" : ""
           }`}
         >
           {/* <TbStatusChange /> */}

@@ -1,10 +1,44 @@
+import axios from "axios";
 import React from "react";
 import { RiAdminLine } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "../store/userSlice";
+import toast from "react-hot-toast";
 
 const AdminLogin = () => {
+
+  const dispatch = useDispatch()
+
+  const navigate = useNavigate();
+
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    try {
+      await axios
+        .post("http://localhost:4000/api/user/login", {
+          email,
+          password,
+          type:'Admin'
+        })
+        .then((data) => {
+          dispatch(setUser({ user: data.data.user }));
+          navigate("/admin");
+          toast.success("Logged In Succesfully!");
+        })
+      } catch (error) {
+      toast.error(err.message);
+      console.error(error); 
+      // setError(error) 
+    }
+  };
+
   return (
     <div className="flex justify-center items-center bg-[#e6f5ff] h-[90vh]">
-      <div className=" bg-[#b3e0ff] px-8 py-6 rounded-xl flex flex-col justify-center h-[60vh] w-[30%]">
+      <form onSubmit={handelSubmit} className=" bg-[#b3e0ff] px-8 py-6 rounded-xl flex flex-col justify-center h-[60vh] w-[30%]">
         <h1 className="text-xl mb-6 font-bold flex items-end gap-2">
           <RiAdminLine fontSize="2rem" />
           Admin LogIn
@@ -14,8 +48,6 @@ const AdminLogin = () => {
             Email:
           </label>
           <input
-            // onChange={(e) => setEmail(e.target.value)}
-            // value={email}
             id="email"
             name="email"
             type="email"
@@ -29,8 +61,6 @@ const AdminLogin = () => {
             Password:
           </label>
           <input
-            // onChange={(e) => setPassword(e.target.value)}
-            // value={password}
             id="password"
             name="password"
             // type={showPassword ? "text" : "password"}
@@ -49,7 +79,7 @@ const AdminLogin = () => {
         >
           Login
         </button>
-      </div>
+      </form>
     </div>
   );
 };

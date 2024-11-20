@@ -8,14 +8,14 @@ const AdminSideBar = () => {
   
   return (
     <div
-      className="flex flex-col w-64 fixed min-h-[90vh] bg-[#ff4141] shadow-lg 
+      className="flex flex-col w-64 fixed min-h-[90vh] bg-[#4c83fc] shadow-lg 
       z-50 py-6 "
     >
       <ul className="text-white text-lg">
         <Link
           to="/admin"
           className={`flex items-center gap-4 p-4 hover:bg-[#ffffff28] ${
-            location.pathname === "/student" ? "font-bold " : ""
+            location.pathname === "/student" ? "font-bold bg-[#ffffff28]" : ""
           }`}
         >
           <FaHome className='text-xl' />
@@ -24,7 +24,7 @@ const AdminSideBar = () => {
         <Link
           to="/admin/pending-applications"
           className={`flex items-center gap-4 p-4 hover:bg-[#ffffff28] ${
-            location.pathname === "/admin/pending-applications" ? "font-bold " : ""
+            location.pathname === "/admin/pending-applications" ? "font-bold bg-[#ffffff28]" : ""
           }`}
         >
           <FaRegSquareCaretDown className='text-xl' />
@@ -32,17 +32,17 @@ const AdminSideBar = () => {
         </Link>
         <Link
           to="/admin/selected-applications"
-          className={`flex items-center gap-4 p-4 hover:bg-[#ffffff28] ${
-            location.pathname === "/admin/selected-applications" ? "font-bold " : ""
+          className={`flex items-center gap-4 p-4 hover:bg-[#ffffff28] text-nowrap ${
+            location.pathname === "/admin/selected-applications" ? "font-bold bg-[#ffffff28]" : ""
           }`}
         >
           <FaCheck />
-          Selected Applications
+          Approved Applications
         </Link>
         <Link
           to="/admin/rejected-applications"
           className={`flex items-center gap-4 p-4 hover:bg-[#ffffff28] ${
-            location.pathname === "/admin/rejected-applications" ? "font-bold " : ""
+            location.pathname === "/admin/rejected-applications" ? "font-bold bg-[#ffffff28]" : ""
           }`}
         >
           <ImCross />
@@ -51,7 +51,7 @@ const AdminSideBar = () => {
         <Link
           to="/admin/search-applications"
           className={`flex items-center gap-4 p-4 hover:bg-[#ffffff28] ${
-            location.pathname === "/admin/search-applications" ? "font-bold " : ""
+            location.pathname === "/admin/search-applications" ? "font-bold bg-[#ffffff28]" : ""
           }`}
         >
           <FaSearch />

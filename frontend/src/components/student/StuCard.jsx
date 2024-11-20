@@ -1,9 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { setCourse } from "../../store/courseSlice";
 
 const StuCard = ({ id, img, title, desc }) => {
+  const dispatch = useDispatch();
+
   return (
-    <Link to="/student/application">
+    <Link to="/student/application" onClick={()=>dispatch(setCourse(id))}>
       <div className="max-w-sm rounded overflow-hidden shadow-lg ">
         <img
           className="w-[24rem] h-[15rem] object-cover"

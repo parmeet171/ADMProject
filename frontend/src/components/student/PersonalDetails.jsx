@@ -1,23 +1,72 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { setPersonalDetailsId } from "../../store/courseSlice";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 const PersonalDetails = () => {
+  const dispatch = useDispatch();
+  const [saved, setSaved] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const {
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      addressline1,
+      addressline2,
+      dob,
+      state,
+      country,
+    } = e.target;
+
+    try {
+      await axios
+        .post("http://localhost:4000/api/application/personaldetail", {
+          firstName: firstName.value,
+          lastName: lastName.value,
+          phoneNumber: phoneNumber.value,
+          email: email.value,
+          addressline1: addressline1.value,
+          addressline2: addressline2.value,
+          dob: dob.value,
+          state: state.value,
+          country: country.value,
+        })
+        .then((data) => {
+          dispatch(setPersonalDetailsId(data.data));
+          setSaved(true);
+          toast.success("Saved");
+        });
+    } catch (error) {
+      console.error(error);
+      toast.error(err.message);
+      // setError(error.message);
+    }
+  };
+
   return (
     <div>
       <div className="text-2xl text-left mb-2 text-[#1d3f88]">
         <h1>Personal Details</h1>
       </div>
-      <div className="bg-white grid grid-cols-4 gap-4 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white grid grid-cols-4 gap-4 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
         {/* firstname */}
         <div className="mb-2 col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="firstname"
+            htmlFor="firstName"
           >
             First Name *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
-            id="firstname"
+            id="firstName"
             type="text"
             placeholder="Enter your First Name..."
             required
@@ -27,13 +76,13 @@ const PersonalDetails = () => {
         <div className="mb-2  col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="lastname"
+            htmlFor="lastName"
           >
             Last Name *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="lastname"
+            id="lastName"
             type="text"
             placeholder="Enter your Last Name..."
             required
@@ -43,13 +92,13 @@ const PersonalDetails = () => {
         <div className="mb-2  col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="phonenumber"
+            htmlFor="phoneNumber"
           >
             Phone Number *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="phonenumber"
+            id="phoneNumber"
             type="tel"
             placeholder="Enter your Phone Number..."
             required
@@ -59,7 +108,7 @@ const PersonalDetails = () => {
         <div className="mb-2  col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="email"
+            htmlFor="email"
           >
             Email *
           </label>
@@ -75,7 +124,7 @@ const PersonalDetails = () => {
         <div className="mb-2  col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="dob"
+            htmlFor="dob"
           >
             Date of Birth *
           </label>
@@ -91,13 +140,13 @@ const PersonalDetails = () => {
         <div className="mb-2  col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="addressl1"
+            htmlFor="addressline1"
           >
             Address line 1 *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="addressl1"
+            id="addressline1"
             type="text"
             placeholder="Enter your Date of Address..."
             required
@@ -107,23 +156,22 @@ const PersonalDetails = () => {
         <div className="mb-2  col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="addressl2"
+            htmlFor="addressline2"
           >
             Address line 2
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
-            id="addressl2"
+            id="addressline2"
             type="text"
             placeholder="Enter your Date of Address..."
-            required
           />
         </div>
         {/* state  */}
         <div className="mb-2  col-span-1">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="state"
+            htmlFor="state"
           >
             State *
           </label>
@@ -139,7 +187,7 @@ const PersonalDetails = () => {
         <div className="mb-2  col-span-1">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="country"
+            htmlFor="country"
           >
             Country *
           </label>
@@ -150,8 +198,18 @@ const PersonalDetails = () => {
             placeholder="Enter your Country..."
             required
           />
-        </div> 
-      </div>
+        </div>
+
+        <div className="flex justify-end col-span-4">
+          <button
+            className={` text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${saved ? "cursor-not-allowed bg-blue-300 " : "cursor-pointer bg-blue-500 hover:bg-blue-700"}`}
+            type="submit"
+            disabled={saved}
+          >
+            {saved ? "Saved" : "Save"}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

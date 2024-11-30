@@ -12,11 +12,11 @@ const StuApplicationStatus = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/application/${user._id}`)
-      .then((data) => dispatch(setApplications(data.data.applications)))
-      .catch((err) => {
-        console.error(err);
-      });
+    .get(`http://localhost:4000/api/application/${user._id}`)
+    .then((data) => dispatch(setApplications(data.data.applications)))
+    .catch((err) => {
+      console.error(err);
+    });
   }, [])
 
   return (

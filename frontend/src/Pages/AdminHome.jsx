@@ -7,8 +7,10 @@ import { BsStack } from "react-icons/bs";
 import axios from "axios";
 import { setApplications } from "../store/applicationSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { data1, data2 } from "./StudentHome";
 const AdminHome = () => {
   const dispatch = useDispatch();
+  const { applications } = useSelector((store) => store.applications);
   const [pendingApplications, setPendingApplications] = useState([]);
   const [selectedApplications, setSelectedApplications] = useState([]);
   const [rejectedApplications, setRejectedApplications] = useState([]);
@@ -22,7 +24,17 @@ const AdminHome = () => {
       });
   }, []);
 
-  const { applications } = useSelector((store) => store.applications);
+  // useEffect(() => {
+  //     const completeData = data1.concat(data2);
+  //     const courseObj = completeData.find((item) => item.id === course);
+  //     if (courseObj) {
+  //       courseObj.applications = applications.filter(
+  //         (app) => app.course == course
+  //       ).length;
+  //     }
+  //     console.log(courseObj);
+
+  // }, []);
 
   useEffect(() => {
     setPendingApplications(
@@ -35,7 +47,6 @@ const AdminHome = () => {
       applications.filter((application) => application.status === "rejected")
     );
   }, [applications]);
-  
 
   return (
     <div className="flex flex-col  ml-[18.5rem] mr-10 my-4 min-h-[90vh]  w-[100%]">
@@ -87,17 +98,72 @@ const AdminHome = () => {
         <div className=" bg-[#14ec43f3] flex justify-left items-center gap-8 p-5 rounded-lg">
           <FaCheck className="text-8xl" />
           <div className="flex flex-col gap-2">
-            <h1 className="text-4xl font-bold">{selectedApplications.length}</h1>
+            <h1 className="text-4xl font-bold">
+              {selectedApplications.length}
+            </h1>
             <p>Approved Applications</p>
           </div>
         </div>
         <div className=" bg-[#ec2214f3] flex justify-left items-center gap-8 p-5 rounded-lg">
           <ImCross className="text-8xl" />
           <div className="flex flex-col gap-2">
-            <h1 className="text-4xl font-bold">{rejectedApplications.length}</h1>
+            <h1 className="text-4xl font-bold">
+              {rejectedApplications.length}
+            </h1>
             <p>Rejected Applications</p>
           </div>
         </div>
+
+        {data1.map((course) => (
+          <>
+            <h1 className="block text-gray-700 col-span-3 text-sm font-bold ">
+              {course.id} details
+            </h1>
+            <div className=" bg-[#2a14ecf3] text-white flex justify-center items-center gap-8  rounded-lg">
+              <div className="flex flex-col gap-2 text-center">
+                <h1 className="text-4xl font-bold">{course.totalSeats}</h1>
+                <p>Total Seats</p>
+              </div>
+            </div>
+            <div className=" bg-[#2a14ecf3] text-white flex justify-center items-center gap-8 p-5 rounded-lg">
+              <div className="flex flex-col gap-2 text-center">
+                <h1 className="text-4xl font-bold">{course.applications}</h1>
+                <p>Total Applications</p>
+              </div>
+            </div>
+            <div className=" bg-[#2a14ecf3] text-white flex justify-center items-center gap-8 p-5 rounded-lg">
+              <div className="flex flex-col gap-2 text-center">
+                <h1 className="text-4xl font-bold">{course.totalSeats - course.applications}</h1>
+                <p>Seats left</p>
+              </div>
+            </div>
+          </>
+        ))}
+        {data2.map((course) => (
+          <>
+            <h1 className="block text-gray-700 col-span-3 text-sm font-bold ">
+              {course.id} details
+            </h1>
+            <div className=" bg-[#2a14ecf3] text-white flex justify-center items-center gap-8  rounded-lg">
+              <div className="flex flex-col gap-2 text-center">
+                <h1 className="text-4xl font-bold">{course.totalSeats}</h1>
+                <p>Total Seats</p>
+              </div>
+            </div>
+            <div className=" bg-[#2a14ecf3] text-white flex justify-center items-center gap-8 p-5 rounded-lg">
+              <div className="flex flex-col gap-2 text-center">
+                <h1 className="text-4xl font-bold">{course.applications}</h1>
+                <p>Total Applications</p>
+              </div>
+            </div>
+            <div className=" bg-[#2a14ecf3] text-white flex justify-center items-center gap-8 p-5 rounded-lg">
+              <div className="flex flex-col gap-2 text-center">
+                <h1 className="text-4xl font-bold">{course.totalSeats - course.applications}</h1>
+                <p>Seats left</p>
+              </div>
+            </div>
+          </>
+        ))}
       </div>
     </div>
   );

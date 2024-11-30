@@ -14,6 +14,7 @@ import {
   AdSelectedApli,
   AdRejectedApli,
   AdminAppliSearch,
+  AdminCourseSearch,
 } from "./Pages";
 import { AdminLayout, Navbar, StudentLayout } from "./components";
 import FullApplication from "./components/Admin/FullApplication";
@@ -49,6 +50,7 @@ function App() {
           <Route path="rejected-applications" element={<AdRejectedApli />} />
           <Route path="search-applications" element={<AdminAppliSearch />} />
           <Route path="application-details/:id" element={<FullApplication />} />
+          <Route path="course-search" element={<AdminCourseSearch />} />
         </Route>
       </Routes>
     </div>

@@ -57,6 +57,15 @@ const AdminSideBar = () => {
           <FaSearch />
           Search Applications
         </Link>
+        <Link
+          to="/admin/course-search"
+          className={`flex items-center gap-4 p-4 hover:bg-[#ffffff28] ${
+            location.pathname === "/admin/course-search" ? "font-bold bg-[#ffffff28]" : ""
+          }`}
+        >
+          <FaSearch />
+          Course Search
+        </Link>
       </ul>
     </div>
   )

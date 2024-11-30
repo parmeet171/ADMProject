@@ -99,7 +99,7 @@ const PersonalDetails = () => {
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:border-blue-500 focus:outline-none"
             id="phoneNumber"
-            type="tel"
+            type="number"
             placeholder="Enter your Phone Number..."
             required
           />

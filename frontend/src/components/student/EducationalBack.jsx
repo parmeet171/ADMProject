@@ -60,7 +60,7 @@ const EducationalBack = () => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="schoolname"
           >
-            School Name
+            School Name *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
@@ -76,7 +76,7 @@ const EducationalBack = () => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="board"
           >
-            Examination Board
+            Examination Board *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
@@ -92,12 +92,12 @@ const EducationalBack = () => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="marks"
           >
-            Marks (in Percentage)
+            Marks (in Percentage) *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
             id="marks"
-            type="text"
+            type="number"
             placeholder="Enter your 10th Marks..."
             required
           />
@@ -108,7 +108,7 @@ const EducationalBack = () => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="year"
           >
-            Year
+            Year *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
@@ -126,7 +126,7 @@ const EducationalBack = () => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="schoolname2"
           >
-            School Name
+            School Name *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
@@ -142,7 +142,7 @@ const EducationalBack = () => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="board2"
           >
-            Examination Board
+            Examination Board *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
@@ -158,12 +158,12 @@ const EducationalBack = () => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="marks2"
           >
-            Marks (in Percentage)
+            Marks (in Percentage) *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "
             id="marks2"
-            type="text"
+            type="number"
             placeholder="Enter your 12th Marks..."
             required
           />
@@ -174,7 +174,7 @@ const EducationalBack = () => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="year2"
           >
-            Year
+            Year *
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-500 focus:outline-none "

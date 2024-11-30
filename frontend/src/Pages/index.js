@@ -11,5 +11,6 @@ import AdminAppliSearch from "./AdminAppliSearch";
 import AdPendingApli from "./AdPendingApli";
 import AdRejectedApli from "./AdRejectedApli";
 import AdSelectedApli from "./AdSelectedApli";
+import AdminCourseSearch from "./AdminCourseSearch";
 
-export { StudentLogin, Home, AdminLogin, Register, StuApplication, StuApplicationStatus, StudentHome, AdminHome, PageNotFound, AdminAppliSearch, AdPendingApli, AdRejectedApli, AdSelectedApli };
+export { StudentLogin, Home, AdminLogin, Register, StuApplication, StuApplicationStatus, StudentHome, AdminHome, PageNotFound, AdminAppliSearch, AdPendingApli, AdRejectedApli, AdSelectedApli, AdminCourseSearch };

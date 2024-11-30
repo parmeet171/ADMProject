@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const applicationSchema = mongoose.Schema(
   {
+    applicationId:{
+      type:Number,
+      required:true,
+      unique:true
+    },
     course: {
       type: String,
       required: true,
@@ -24,7 +29,7 @@ const applicationSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "approved", "rejected"],
+      enum: ["pending", "approved", "rejected", "confirmed"],
       default: "pending",
     },
   },

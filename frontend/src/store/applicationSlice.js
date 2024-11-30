@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  applications: []
+  applications: [],
+  loaded:false
 };
 
 const applicationSlice = createSlice({

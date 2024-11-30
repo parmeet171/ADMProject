@@ -8,7 +8,7 @@ const StuTable = ({ applications }) => {
         <thead className="text-xs uppercase bg-[#2c6fff]">
           <tr>
             <th scope="col" className="px-6 py-3">
-              S.No.
+              Application No.
             </th>
             <th scope="col" className="px-6 py-3">
               Course
@@ -26,12 +26,12 @@ const StuTable = ({ applications }) => {
         </thead>
         <tbody className="text-gray-900">
           {applications.map((application, index) => (
-            <tr key={index} className="odd:bg-white  even:bg-gray-300  border-b ">
+            <tr key={index} className="odd:bg-white  even:bg-gray-100  border-b ">
               <th
                 scope="row"
                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
               >
-                {index + 1}
+                {application.applicationId}
               </th>
 
               <td className="px-6 py-4">{application.course}</td>
@@ -41,6 +41,8 @@ const StuTable = ({ applications }) => {
                     ? `odd:text-[#e4c726] even:text-[#000000]` 
                     : application.status === "approved"
                     ? "text-[#2eff51]"
+                    : application.status === "confirmed"
+                    ? "text-[#48ff1b]"
                     : "text-[#ff2e2e]"
                 }`}
                 >

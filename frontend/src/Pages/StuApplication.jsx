@@ -5,7 +5,7 @@ import EducationalBack from "../components/student/EducationalBack";
 import CourseField from "../components/student/CourseField";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { resetCourse } from "../store/courseSlice";
+import { resetCourse, setCourse } from "../store/courseSlice";
 import { useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 
@@ -63,7 +63,7 @@ const StuApplication = () => {
       </div>
 
       <div>
-        <CourseField />
+        <CourseField callback={(value)=>dispatch(setCourse(value))} value={courseData.course}/>
 
         <PersonalDetails />
 

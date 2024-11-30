@@ -8,7 +8,7 @@ const AdTable = ({ showStatus, applications }) => {
         <thead className="text-xs uppercase bg-[#2c6fff]">
           <tr>
             <th scope="col" className="px-6 py-3">
-              S.No.
+              Application No.
             </th>
             <th scope="col" className="px-6 py-3">
               Student Name
@@ -34,12 +34,12 @@ const AdTable = ({ showStatus, applications }) => {
         </thead>
         <tbody className="text-gray-900">
           {applications.map((item, idx) => (
-            <tr key={idx} className="bg-white  even:bg-gray-300  border-b ">
+            <tr key={idx} className="bg-white  even:bg-gray-100  border-b ">
               <th
                 scope="row"
                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
               >
-                {idx + 1}.
+                {item.applicationId}
               </th>
               <td className="px-6 py-4">
                 {item.personalDetails.firstName +
@@ -55,6 +55,8 @@ const AdTable = ({ showStatus, applications }) => {
                     ? `odd:text-[#e4c726] even:text-[#000000]`
                     : item.status === "approved"
                     ? "text-[#2eff51]"
+                    : item.status === "confirmed"
+                    ? "text-[#48ff1b]"
                     : "text-[#ff2e2e]"
                 }`}
               >

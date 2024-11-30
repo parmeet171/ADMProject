@@ -9,12 +9,12 @@ const AdminAppliSearch = () => {
   const searchApplication = (e) => {
     setSearchedApplication(
       applications.filter((application) => {
-        const fullname =
-          application.personalDetails.firstName +
-          application.personalDetails.lastName;
-
+        // const fullname =
+        //   application.personalDetails.firstName +
+        //   application.personalDetails.lastName;
+console.log(application.applicationId, e.target.value)
         
-        return fullname.toLowerCase().includes(e.target.value.toLowerCase());
+        return application?.applicationId?.toString().includes(e.target.value);
       })
     );
   };
@@ -29,7 +29,7 @@ const AdminAppliSearch = () => {
         <input
           type="email"
           onChange={searchApplication}
-          placeholder="Search Applications..."
+          placeholder="Enter  Applicationid..."
           className="w-full outline-none bg-white text-gray-600 text-sm px-4 py-3"
         />
         <button

@@ -47,6 +47,9 @@ const submitApplication= async (req, res) => {
 
     try {
         // Check that all referenced documents exist
+        const lastApplication = await Application.findOne().sort({ applicationId: -1 });
+        const applicationId = lastApplication ? (lastApplication.applicationId || 0) + 1 : 1;
+
         const personalDetail = await PersonalDetail.findById(personalDetailId);
         const familyInformation = await FamilyInformation.findById(familyInformationId);
         const educationalBackground = await EducationalBackground.findById(educationalBackgroundId);
@@ -57,6 +60,7 @@ const submitApplication= async (req, res) => {
 
         // Create the Application document
         const application = new Application({
+            applicationId,
             course,
             userId,
             personalDetails: personalDetailId,
@@ -97,16 +101,16 @@ const getApplications = async(req, res)=>{
 const updateStatus = async(req, res)=>{
     const {status, id}=req.body;
 
-    // try {
+    try {
         const application = await Application.findByIdAndUpdate(
             id,                      
             {status},                
             { new: true, runValidators: true } 
           );
         res.status(200).json({ message: 'Application  updated successfully', application });
-    // } catch (error) {
-    //     res.status(400).json({ error: 'Error updating application status' });
-    // }
+    } catch (error) {
+        res.status(400).json({ error: 'Error updating application status' });
+    }
 }
 
 
